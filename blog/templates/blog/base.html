@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <!-- medium style editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Song+Myung" rel="stylesheet">
+
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-inverse techfont custom-navbar">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}"><b>My Blog</b></a></li>
+          <li><a href="{% url 'about'%}">About</a></li>
+          <li><a href="https://www.github.com">Github</a></li>
+          <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'post_new' %}">New Post</a>
+          </li>
+          <li>
+            <a href="{% url 'post_draft_list' %}">Drafts</a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}">Log Out</a>
+          </li>
+          <li>
+            <a>Welcome: {{user.username}}</a>
+          </li>
+            {% else %}
+            <li><a class="nav navbar-right" href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <!-- content block -->
+    <div class="content container">
+      <div class="col-lg-9 col-md-6 col-xs-6 col-sm-6">
+        <div class="blog_posts">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
