@@ -8,8 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
 # Create your views here.
 
-class AboutView(TemplateView):
-    template_name = 'about.html'
+def AboutView(request):
+    return render(request, 'blog/about.html')
 
 class PostListView(ListView):
     model = Post
