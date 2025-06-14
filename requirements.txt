@@ -11,6 +11,6 @@ imgurpython==1.1.7
 psycopg2==2.7.5
 python-dateutil==2.7.3
 python-mimeparse==1.6.0
-requests==2.20.0
+requests==2.32.4
 six==1.11.0
 urllib3==1.24
